@@ -9,8 +9,10 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRegistration;
 
 public class ApplicationInitializer implements WebApplicationInitializer {
-    @Override public void onStartup(final ServletContext servletContext) throws ServletException {
+    @Override
+    public void onStartup(final ServletContext servletContext) throws ServletException {
         AnnotationConfigWebApplicationContext context = new AnnotationConfigWebApplicationContext();
+        context.register(ApplicationConfig.class);
 
         ServletRegistration.Dynamic servletRegistration =
                 servletContext.addServlet("mvc", new DispatcherServlet(context));
